@@ -144,7 +144,7 @@ export default defineComponent({
       this.closeBtn = false
     },
     startCount() {
-      if (this.timer === 15) {
+      if (this.timer === 5) {
         const intervalId = setInterval(() => {
           this.timer--
           if (!this.timer) {
@@ -155,7 +155,7 @@ export default defineComponent({
               if (!this.smallTimer) {
                 clearInterval(interSmall)
                 this.timercount = false
-                this.timer = 15
+                this.timer = 5
                 this.smallTimer = 3
               }
             }, 1000)
@@ -205,11 +205,11 @@ export default defineComponent({
       this.dataList.QuizList.sort(() => Math.random() - 0.5)
     }
     this.questionCount()
-    this.timer = 15
+    this.timer = 5
   },
   watch: {
     timer(newValue) {
-      if (newValue === 15 && this.current !== Number(this.selectCount)) {
+      if (newValue === 5 && this.current !== Number(this.selectCount)) {
         this.startCount()
       } else if (this.current === Number(this.selectCount)) {
         this.timer = 0
