@@ -1,14 +1,16 @@
 <template>
-  <div class="w-full flex justify-center items-center h-full relative">
-    <div class="absolute top-[15%] font-bold text-4xl">{{ todayDate }}</div>
+  <div class="w-full flex justify-center items-center h-full">
     <div class="mx-auto w-10/12 lg:w-6/12 flex flex-wrap items-center">
-      <p>{{ userName }}님, 안녕하세요😀</p>
       <div class="w-full bg-white rounded-lg p-5 gap-x-5 flex flex-wrap justify-center">
-        <input ref="focusInput" @keyup.enter="NameChk" @input="chk()" type="text" placeholder="한글 이름을 입력해주세요"
-          class="border px-4 py-2 rounded-md shadow-md outline-none basis-full sm:basis-5/12 placeholder:text-center "
-          v-model="userName">
+        <input ref="focusInput" @keyup.enter="NameChk" @input="chk()" type="text"
+          class="border pl-4 py-2 rounded-md shadow-md outline-none basis-full sm:basis-5/12" v-model="userName">
         <button @click="NameChk()"
           class="text-sm sm:text-base btn-primary bg-blue-500 hover:bg-blue-700 focus:ring-blue-400 sm:py-0 basis-full sm:basis-3/12 mt-5 sm:mt-0">시작하기</button>
+        <div class="mt-4 text-xs sm:text-sm font-bold">
+          <span v-if="userName != ''" class="block sm:inline-block mb-3">{{ userName }} 님 반갑습니다.</span>
+          문제 유형은 {{ selectRandom === "0" ? "기본" : "랜덤 " }}이며, {{ selectType }}카테고리를 선택하였으며 총 {{ dataList.length }}개의 문제
+          중 {{ selectCount }} 문제를 선택하셨습니다.
+        </div>
       </div>
       <div class="w-full bg-white rounded-lg p-5 mt-5 flex justify-between items-center flex-wrap">
         <div class="flex justify-around basis-full items-center xl:basis-4/12">
@@ -42,12 +44,9 @@
         </div>
       </div>
       <div
-        class="fixed bg-white left-1/2 top-[15%] -translate-x-1/2 -translate-y-1/2 z-50 border rounded-lg duration-500 transition-all w-3/4 sm:w-2/4 lg:w-1/6 shadow-2xl"
-        :class="!userNameEmpty ? 'opacity-0' : ' opacity-100'">
-        <h3 class="bg-red-500 rounded-tl-lg rounded-tr-lg p-2 pl-4 relative">경고창
-          <img @click="removeBtn()" :src="require(`@/assets/images/ico_x.png`)" alt="취소버튼"
-            class="w-5 h-5 cursor-pointer hover:border-white hover:border absolute right-2 top-1/2 -translate-y-1/2">
-        </h3>
+        class="fixed bg-white left-1/2 top-[48%] -translate-x-1/2 -translate-y-1/2 z-50 border rounded-lg duration-700 transition-all w-3/4 sm:w-2/4 lg:w-1/6"
+        :class="!userNameEmpty ? 'hidden' : 'block'">
+        <h3 class="bg-gray-100 p-2 pl-4">경고창 <span></span></h3>
         <p class="p-4 py-6">{{ errorMsg }}</p>
       </div>
     </div>
@@ -82,12 +81,10 @@ export default defineComponent({
       dataList: [] as Quiz[],
       selectRandom: "0",
       selectType: "전체",
-      selectCount: 1,
-      todayDate: ""
+      selectCount: 1
     }
   },
   name: 'HomeView',
- 
   components: {
   },
   methods: {
@@ -99,13 +96,11 @@ export default defineComponent({
     },
     NameChk() {
       if (!this.userName) {
-        this.userNameEmpty = true;
-        (this.$refs.focusInput as HTMLInputElement).focus();
+        this.userNameEmpty = true
         setTimeout(() => {
           this.userNameEmpty = false
-        }, 5000);
+        }, 2000);
       } else {
-        this.userNameEmpty = false
         const route: RouteLocationRaw = {
           name: "QuizView",
           query: {
@@ -118,9 +113,6 @@ export default defineComponent({
         }
         this.$router.push(route)
       }
-    },
-    removeBtn() {
-      this.userNameEmpty = false
     }
   },
   computed: {
@@ -148,12 +140,6 @@ export default defineComponent({
   },
   created() {
     this.dataList = quizList.QuizList as Quiz[];
-    const date = new Date();
-    const year = String(date.getFullYear());
-    const month = String(date.getMonth() + 1);
-    const day = String(date.getDate());
-    const formattedDate = `${year}-${month}-${day}`;
-    this.todayDate = formattedDate
   },
   mounted() {
     (this.$refs.focusInput as HTMLInputElement).focus();

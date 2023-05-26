@@ -1,0 +1,121 @@
+{
+  "QuizList": [
+    {
+      "id": 1,
+      "question": "HTML의 의미를 보기에서 고르세요",
+      "answer": "HyperText Markup Language",
+      "view": {
+        "number1": "Hyperlinks and Text Markup Language",
+        "number2": "Home Tool Markup Language",
+        "number3": "HyperText Markup Language",
+        "number4": "HyperLinks tool Markup Language"
+      },
+      "type": "html",
+      "hint": "링크는 웹의 근본적인 속성으로 웹페이지를 다른 페이지로 연결하는 링크를 하이퍼◯◯◯라고 한다."
+    },
+    {
+      "id": 2,
+      "question": "태그요소 p의 display 속성을 고르세요",
+      "answer": "block",
+      "view": {
+        "number1": "block",
+        "number2": "inline-block",
+        "number3": "inline",
+        "number4": "flex"
+      },
+      "type": "html",
+      "hint": "p는 div와 같은 display 속성을 공유한다."
+    },
+    {
+      "id": 3,
+      "question": "position의 기본값을 고르세요",
+      "answer": "static",
+      "view": {
+        "number1": "static",
+        "number2": "fixed",
+        "number3": "relative",
+        "number4": "sticky"
+      },
+      "type": "css",
+      "hint": "position은 기본값으로 설정되어있을 때 고정되어있다."
+    },
+    {
+      "id": 4,
+      "question": "이미지 태그에서 웹 표준을 위해 반드시 작성해야 하는 속성을 고르세요",
+      "answer": "alt",
+      "view": {
+        "number1": "title",
+        "number2": "alt",
+        "number3": "type",
+        "number4": "label"
+      },
+      "type": "html",
+      "hint": "이미지가 보이지 않을 때 대체문구가 필요하다."
+    },
+      {
+        "id": 5,
+        "question": "CSS의 의미를 보기에서 고르세요",
+        "answer": "Cascading Style Sheet",
+        "view": {
+          "number1": "Cascading Style Sheets",
+          "number2": "Computer Style Sheets",
+          "number3": "Colorful Style Sheets",
+          "number4": "Creative Style Sheets"
+        },
+        "type": "css",
+        "hint": "스타일 속성을 자손 요소들에게 상속시켜주는 모습이 폭포수처럼 내려가는 모습과 닮았다."
+      },
+      {
+        "id": 6,
+        "question": "css를 활용하여 배경색을 변경하고자 한다. 올바른 속성은?",
+        "answer": "Background-color",
+        "view": {
+          "number1": "Background-color",
+          "number2": "Background-image",
+          "number3": "bgcolor",
+          "number4": "backcolor"
+        },
+        "type": "css",
+        "hint": "'배경색'에 단어에 집중"
+      },
+      {
+        "id": 7,
+        "question": "HTML 내 자바스크립트 파일을 링크해서 사용자고자 한다. 올바른 방법은?",
+        "answer": "src='script.js'",
+        "view": {
+          "number1": "src='script.js'",
+          "number2": "type='script.js'",
+          "number3": "href='script.js'",
+          "number4": "name='script.js'"
+        },
+        "type": "JS",
+        "hint": "source의 주소를 링크해야 한다."
+      },
+      {
+        "id": 8,
+        "question": "경고창을 띄우고자 할 때 올바른 방법은?",
+        "answer": "alert('메시지')",
+        "view": {
+          "number1": "alert",
+          "number2": "msseage",
+          "number3": "msgBox",
+          "number4": "label"
+        },
+        "type": "JS",
+        "hint": "경고창을 띄운다는 것은 경고창을 알린다는 것이다."
+      },
+      {
+        "id": 9,
+        "question": "콘솔창에 데이터를 확인하고자 한다. 올바른 방법은?",
+        "answer": "console.log('데이터')",
+        "view": {
+          "number1": "console.log('데이터')",
+          "number2": "console.data('데이터')",
+          "number3": "console(데이터)",
+          "number4": "log(데이터)"
+        },
+        "type": "JS",
+        "hint": "콘솔창에서 로그를 통해 테이터를 확인할 수 있다."
+      }
+  ]
+}
