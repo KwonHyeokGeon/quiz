@@ -21,7 +21,7 @@
       <h3
         class="relative font-bold basis-full text-center text-indigo-500 sm:text-2xl lg:text-3xl text-xl mt-10 bg-white rounded-lg p-5">
         {{ userName }}님 <span class="text-black">반갑습니다</span>
-        <div class="absolute top-0 left-0 w-full">
+        <div class="absolute -top-10 left-0 w-full">
           <p v-if="hintUse" :class="closeBtn && 'hidden'"
             class="font-bold sm:text-xl bg-gray-500 text-white rounded-lg p-2 relative">{{
               dataList.QuizList[current].hint }}
@@ -63,7 +63,6 @@
             {{Number(selectCount)}}개 정답)</p>
           <router-link to="/" class="btn-primary bg-green-400 hover:bg-green-600 text-center text-sm">처음으로</router-link>
         </div>
-       <router-link :to=" { name: 'WrongView', query: { userSelect: userSelect.join('') } } " class="flex justify-center items-center">오답확인</router-link>
       </div>
     </div>
   </div>
@@ -98,7 +97,6 @@ export default defineComponent({
       timer: 0,
       timercount: false,
       smallTimer: 3,
-      wrongAnswer: [] as string[],
       // Type Assertion - 변수명 as 변경할 타입 - vue 값 as 변경할 타입
       /*
       as키워드는 유니온 타입 같은 복잡한 타입을 하나의 정확한 타입으로 줄일 때 사용

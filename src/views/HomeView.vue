@@ -1,44 +1,46 @@
 <template>
-  <div class="w-full flex justify-center items-center h-full relative">
-    <div class="absolute top-[15%] font-bold text-4xl">{{ todayDate }}</div>
-    <div class="mx-auto w-10/12 lg:w-6/12 flex flex-wrap items-center">
-      <p>{{ userName }}님, 안녕하세요😀</p>
-      <div class="w-full bg-white rounded-lg p-5 gap-x-5 flex flex-wrap justify-center">
+  <div class="w-full h-full">
+    <div class="font-bold text-xl w-full bg-green-700 h-60 flex justify-center items-center px-4">
+      <p class="text-white text-4xl">코딩 Quiz</p>
+    </div>
+    <div class="mx-auto max-w-7xl mt-20 md:mt-40 flex flex-wrap items-center shadow-2xl rounded-md">
+      <div class="w-full bg-white rounded-lg flex flex-wrap justify-center items-center gap-4 mt-10">
         <input ref="focusInput" @keyup.enter="NameChk" @input="chk()" type="text" placeholder="한글 이름을 입력해주세요"
-          class="border px-4 py-2 rounded-md shadow-md outline-none basis-full sm:basis-5/12 placeholder:text-center "
+          class="border py-2 rounded-md shadow-md outline-none basis-full - px-2 sm:basis-2/6 placeholder:text-center "
           v-model="userName">
         <button @click="NameChk()"
-          class="text-sm sm:text-base btn-primary bg-blue-500 hover:bg-blue-700 focus:ring-blue-400 sm:py-0 basis-full sm:basis-3/12 mt-5 sm:mt-0">시작하기</button>
+          class="btn-flow text-sm sm:text-base basis-full sm:basis-2/6">시작하기
+        </button>
       </div>
-      <div class="w-full bg-white rounded-lg p-5 mt-5 flex justify-between items-center flex-wrap">
-        <div class="flex justify-around basis-full items-center xl:basis-4/12">
-          <p
-            class="sm:text-sm text-xs btn-primary bg-green-500 hover:bg-green-700 focus:ring-green-400 basis-5/12 text-center">
-            랜덤설정
-          </p>
-          <select v-model="selectRandom" class="border rounded basis-6/12 py-1 text-center">
+      <div class="w-full bg-white rounded-lg p-5 mt-5 flex flex-col items-center flex-wrap">
+        <div class="flex flex-col md:flex-row w-8/12 items-center my-4 gap-4">
+          <select v-model="selectRandom" class="border rounded py-1 basis-1/2 text-center">
             <option value="0">기본</option>
             <option value="1">랜덤</option>
           </select>
-        </div>
-        <div class="flex justify-around basis-full items-center xl:basis-4/12 my-5 xl:my-0">
           <p
-            class="sm:text-sm text-xs btn-primary bg-green-500 hover:bg-green-700 focus:ring-green-400 basis-5/12 text-center">
-            문제유형
+            class="sm:text-sm text-xs btn-flow text-center basis-1/2">
+            랜덤설정
           </p>
-          <select @change="selectCount = 1" v-model="selectType" class="border rounded basis-6/12 py-1 text-center">
+        </div>
+        <div class="flex flex-col md:flex-row w-8/12 items-center my-4 gap-4">
+          <select @change="selectCount = 1" v-model="selectType" class="border basis-1/2 rounded py-1 text-center">
             <option value="전체">전체({{ dataList.length }}문제)</option>
             <option v-for="(e, index) in uniqueTypes" :key="e" :value="e">{{ e }}({{ cateCount[index] }}문제)</option>
           </select>
-        </div>
-        <div class="flex justify-around basis-full items-center xl:basis-4/12">
           <p
-            class="sm:text-sm text-xs btn-primary bg-green-500 hover:bg-green-700 focus:ring-green-400 basis-5/12 text-center">
-            개수설정
+            class="sm:text-sm text-xs btn-flow basis-1/2 text-center">
+            문제유형
           </p>
-          <select v-model="selectCount" class="border rounded basis-6/12 py-1 text-center">
+        </div>
+        <div class="flex flex-col md:flex-row w-8/12 basis-full items-center gap-4 my-4">
+          <select v-model="selectCount" class="border rounded py-1 text-center basis-1/2">
             <option v-for="e in cateList.length" :key="e" :value="e">{{ e }}문제</option>
           </select>
+          <p
+            class="sm:text-sm text-xs btn-flow text-center basis-1/2">
+            개수설정
+          </p>
         </div>
       </div>
       <div
@@ -87,7 +89,7 @@ export default defineComponent({
     }
   },
   name: 'HomeView',
- 
+
   components: {
   },
   methods: {

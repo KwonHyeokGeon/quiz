@@ -8,6 +8,9 @@ html, body, #app{width: 100%;height: 100%;}
   .btn-primary{
     @apply py-2 px-4 text-white font-semibold rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-opacity-75;
   }
+  .btn-flow{
+    @apply text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2 text-center mr-2 
+  }
 }
 
 @font-face {
@@ -18,5 +21,3 @@ html, body, #app{width: 100%;height: 100%;}
 }
 
 body{font-family: 'S-CoreDream-3Light';}
-
-#app{background-color: #f5f6f7;}
