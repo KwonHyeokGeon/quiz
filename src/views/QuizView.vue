@@ -145,7 +145,7 @@ export default defineComponent({
       if (this.timer === 5) {
         const intervalId = setInterval(() => {
           this.timer--
-          if (!this.timer) {
+          if (!this.timercount) {
             clearInterval(intervalId)
             this.current++;
             const interSmall = setInterval(() => {
