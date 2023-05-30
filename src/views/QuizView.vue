@@ -1,16 +1,6 @@
 <template>
   <div class="w-full flex items-center justify-center flex-wrap h-full relative pt-20">
-    <div :class="timercount ? '!h-full' : '!h-0'"
-      class="bg-white w-full transition-all overflow-hidden absolute left-0 top-0 z-50 flex items-center justify-center">
-      <p class="text-4xl font-extrabold flex flex-col items-center">시간이 종료되었습니다!
-        <span class="text-base mt-40">{{ smallTimer }}초후 다음문제로 이동</span>
-      </p>
-    </div>
     <div class="mx-auto w-10/12 lg:w-7/12 flex justify-center items-center flex-wrap ">
-      <p class="text-xl" :class="{ 'hidden': current === Number(selectCount) }">
-        <span class="text-3xl text-red-500">{{ timer }}</span>
-        초 남았습니다.
-      </p>
       <div class="h-5 bg-gray-300 basis-full relative rounded-lg">
         <p v-if="current != Number(selectCount)" class="absolute right-2 -top-5 text-xs">{{ current + 1 }} / {{
           selectCount }}</p>
@@ -47,21 +37,21 @@
           </li>
         </ul>
         <div class="basis-full flex sm:flex-row flex-col justify-between flex-wrap">
-          <button @click=" useHint() "
-            class="btn-primary bg-green-400 hover:bg-green-600  focus:ring-green-400 basis-4/12 sm:basis-3/12 text-sm"
-            :disabled=" hint <= 0 ">힌트 : {{ hint }}개</button>
-          <button @click=" clickOpen() " class="btn-primary bg-green-400  mt-2 sm:mt-0  basis-4/12 sm:basis-3/12 text-sm"
-            :class=" hintUse && 'hover:bg-green-600 focus:ring-green-400' " :disabled=" !hintUse ">힌트
+          <button @click=" useHint()"
+            class="btn-flow basis-4/12 sm:basis-3/12 text-sm"
+            :disabled="hint <= 0">힌트 : {{ hint }}개</button>
+          <button @click=" clickOpen()" class="btn-flow  mt-2 sm:mt-0  basis-4/12 sm:basis-3/12 text-sm"
+            :class="hintUse && 'btn-flow'" :disabled="!hintUse">힌트
             다시보기</button>
           <router-link to="/"
-            class="btn-primary bg-green-400 mt-2 sm:mt-0 hover:bg-green-600 text-center sm:basis-3/12 text-sm">처음으로</router-link>
+            class="btn-flow mt-2 sm:mt-0 text-center sm:basis-3/12 text-sm">처음으로</router-link>
         </div>
       </div>
       <div v-else class="mt-10 basis-full font-semibold text-lg sm:text-2xl ">
         <div class="flex justify-between">
           <p> SCORE: {{ Math.floor((resultScore / Number(selectCount)) * 100) }} 점({{ resultScore }} /
-            {{Number(selectCount)}}개 정답)</p>
-          <router-link to="/" class="btn-primary bg-green-400 hover:bg-green-600 text-center text-sm">처음으로</router-link>
+            {{ Number(selectCount) }}개 정답)</p>
+          <router-link to="/" class="btn-flow text-center text-sm">처음으로</router-link>
         </div>
       </div>
     </div>
@@ -94,9 +84,6 @@ export default defineComponent({
       userSelect: [] as string[],
       hint: 2,
       hintUse: false,
-      timer: 0,
-      timercount: false,
-      smallTimer: 3,
       // Type Assertion - 변수명 as 변경할 타입 - vue 값 as 변경할 타입
       /*
       as키워드는 유니온 타입 같은 복잡한 타입을 하나의 정확한 타입으로 줄일 때 사용
@@ -141,27 +128,6 @@ export default defineComponent({
     clickOpen() {
       this.closeBtn = false
     },
-    startCount() {
-      if (this.timer === 5) {
-        const intervalId = setInterval(() => {
-          this.timer--
-          if (!this.timercount) {
-            clearInterval(intervalId)
-            this.current++;
-            const interSmall = setInterval(() => {
-              this.smallTimer--;
-              if (!this.smallTimer) {
-                clearInterval(interSmall)
-                this.timercount = false
-                this.timer = 5
-                this.smallTimer = 3
-              }
-            }, 1000)
-            this.timercount = true
-          }
-        }, 1000)
-      }
-    },
   },
   computed: {
     progress(): number {
@@ -203,17 +169,9 @@ export default defineComponent({
       this.dataList.QuizList.sort(() => Math.random() - 0.5)
     }
     this.questionCount()
-    this.timer = 5
   },
   watch: {
-    timer(newValue) {
-      if (newValue === 5 && this.current !== Number(this.selectCount)) {
-        this.startCount()
-      } else if (this.current === Number(this.selectCount)) {
-        this.timer = 0
-        this.timercount = false
-      }
-    },
+
   }
 })
 </script>

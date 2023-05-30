@@ -5,7 +5,7 @@
     </div>
     <div class="mx-auto max-w-7xl mt-20 md:mt-40 flex flex-wrap items-center shadow-2xl rounded-md">
       <div class="w-full bg-white rounded-lg flex flex-wrap justify-center items-center gap-4 mt-10">
-        <input ref="focusInput" @keyup.enter="NameChk" @input="chk()" type="text" placeholder="한글 이름을 입력해주세요"
+        <input ref="focusInput" @keyup.enter="NameChk" type="text" placeholder="이름을 입력해주세요"
           class="border py-2 rounded-md shadow-md outline-none basis-full - px-2 sm:basis-2/6 placeholder:text-center "
           v-model="userName">
         <button @click="NameChk()"
@@ -89,16 +89,7 @@ export default defineComponent({
     }
   },
   name: 'HomeView',
-
-  components: {
-  },
   methods: {
-    chk() {
-      const regex = /^[가-힣]*$/;
-      if (!regex.test(this.userName)) {
-        this.userName = this.userName.replace(/[^가-힣]*/, "")
-      }
-    },
     NameChk() {
       if (!this.userName) {
         this.userNameEmpty = true;
